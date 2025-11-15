@@ -9,6 +9,7 @@ const magnifierCanvas = document.getElementById('magnifierCanvas');
 const palette = document.getElementById('palette');
 const lastPick = document.getElementById('lastPick');
 const clearBtn = document.getElementById('clearBtn');
+const exportBtn = document.getElementById('exportBtn');
 
 let ctxHidden, ctxMag;
 let imgLoaded = false;
@@ -16,6 +17,7 @@ let zoom = 8; // magnification
 const magSize = 100;
 let lastTouchTime = 0;
 let lastTouchPos = null;
+let pickedColors = [];
 
 function init(){
   ctxHidden = hiddenCanvas.getContext('2d');
@@ -38,6 +40,13 @@ function init(){
   photo.addEventListener('touchend', onTouchEnd);
 
   clearBtn.addEventListener('click', onClear);
+  exportBtn.addEventListener('click', onExport);
+
+  // keyboard shortcuts
+  document.addEventListener('keydown', onKeyDown);
+
+  // show onboarding on first visit
+  showOnboarding();
 }
 
 function preventDefaults(e){e.preventDefault();e.stopPropagation();}
@@ -156,7 +165,8 @@ function onTouchEnd(e){
       const rgb = `rgb(${r}, ${g}, ${b})`;
       const hsl = rgbToHslString(r,g,b);
       const cmyk = rgbToCmykString(r,g,b);
-      addColor({hex, rgb, hsl, cmyk, rgba, r,g,b});
+      const hsv = rgbToHsvString(r,g,b);
+      addColor({hex, rgb, hsl, cmyk, hsv, rgba, r,g,b});
     }catch(err){
       console.warn('Touch pick failed', err);
     }
@@ -201,7 +211,8 @@ function onClickPick(e){
   const rgb = `rgb(${r}, ${g}, ${b})`;
   const hsl = rgbToHslString(r,g,b);
   const cmyk = rgbToCmykString(r,g,b);
-  addColor({hex, rgb, hsl, cmyk, rgba, r,g,b});
+  const hsv = rgbToHsvString(r,g,b);
+  addColor({hex, rgb, hsl, cmyk, hsv, rgba, r,g,b});
 }
 
 function addColor(color){
@@ -220,11 +231,13 @@ function addColor(color){
   const lineRgb = codeLine('RGB', color.rgb);
   const lineHsl = codeLine('HSL', color.hsl);
   const lineCmyk = codeLine('CMYK', color.cmyk);
+  const lineHsv = codeLine('HSV', color.hsv);
 
   codes.appendChild(lineHex);
   codes.appendChild(lineRgb);
   codes.appendChild(lineHsl);
   codes.appendChild(lineCmyk);
+  codes.appendChild(lineHsv);
 
   item.appendChild(sw);
   item.appendChild(codes);
@@ -237,6 +250,7 @@ function addColor(color){
   });
 
   palette.prepend(item);
+  pickedColors.unshift(color);
   showLastPick(color);
 }
 
@@ -310,6 +324,127 @@ function onClear(){
   imgLoaded = false;
 }
 
+function onExport(){
+  if(pickedColors.length === 0){
+    alert('No colors picked yet. Pick some colors first!');
+    return;
+  }
+  const timestamp = new Date().toISOString();
+  const data = {
+    exported_at: timestamp,
+    total_colors: pickedColors.length,
+    colors: pickedColors
+  };
+  const json = JSON.stringify(data, null, 2);
+  const blob = new Blob([json], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `pickly-colors-${new Date().getTime()}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function onKeyDown(e){
+  // Ctrl+Z or Cmd+Z for undo (remove last color)
+  if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z'){
+    e.preventDefault();
+    if(pickedColors.length > 0){
+      pickedColors.shift();
+      renderPalette();
+    }
+  }
+  // Ctrl+E or Cmd+E for export
+  if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'e'){
+    e.preventDefault();
+    onExport();
+  }
+  // Ctrl+C from last pick
+  if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'c'){
+    if(pickedColors.length > 0 && e.target !== document.body){
+      const lastColor = pickedColors[0];
+      copyText(lastColor.hex);
+      flashCopy(exportBtn); // show feedback on button
+    }
+  }
+}
+
+function renderPalette(){
+  palette.innerHTML = '';
+  pickedColors.forEach(c => {
+    const item = document.createElement('div');
+    item.className = 'color-item';
+    const swatch = document.createElement('div');
+    swatch.className = 'swatch';
+    swatch.style.background = c.hex;
+    const codes = document.createElement('div');
+    codes.style.display = 'flex';
+    codes.style.flexDirection = 'column';
+    codes.style.gap = '8px';
+    codes.style.flex = '1';
+    const lineHex = codeLine('HEX', c.hex);
+    const lineRgb = codeLine('RGB', c.rgb);
+    const lineHsl = codeLine('HSL', c.hsl);
+    const lineCmyk = codeLine('CMYK', c.cmyk);
+    const lineHsv = codeLine('HSV', c.hsv);
+    codes.appendChild(lineHex);
+    codes.appendChild(lineRgb);
+    codes.appendChild(lineHsl);
+    codes.appendChild(lineCmyk);
+    codes.appendChild(lineHsv);
+    item.appendChild(swatch);
+    item.appendChild(codes);
+    palette.appendChild(item);
+  });
+  showLastPick();
+}
+
+function showOnboarding(){
+  // Check if user has visited before (localStorage flag)
+  if(localStorage.getItem('pickly-visited')){
+    return;
+  }
+  // Show onboarding hint for first-time users
+  const hint = document.createElement('div');
+  hint.className = 'onboarding-hint';
+  hint.style.cssText = `
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--accent);
+    color: white;
+    padding: 16px 20px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    max-width: 300px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 999;
+  `;
+  hint.innerHTML = `
+    <div style="font-weight:700; margin-bottom: 8px;">👋 Welcome to Pickly!</div>
+    <div>Upload an image, then hover over it to pick colors. Click to save them.</div>
+    <button style="
+      background: white;
+      color: var(--accent);
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 10px;
+      font-size: 12px;
+    ">Got it!</button>
+  `;
+  const btn = hint.querySelector('button');
+  btn.addEventListener('click', ()=>{
+    hint.remove();
+    localStorage.setItem('pickly-visited', 'true');
+  });
+  document.body.appendChild(hint);
+}
+
 // --- color helpers ---
 function componentToHex(c){
   const hex = c.toString(16).padStart(2,'0');
@@ -350,6 +485,26 @@ function rgbToCmykString(r,g,b){
   return `cmyk(${c}%, ${m}%, ${y}%, ${kk}%)`;
 }
 
+function rgbToHsvString(r,g,b){
+  r/=255;g/=255;b/=255;
+  const max = Math.max(r,g,b), min = Math.min(r,g,b);
+  const d = max - min;
+  let h = 0;
+  if(d!==0){
+    switch(max){
+      case r: h = ((g-b)/d + (g<b?6:0))/6; break;
+      case g: h = ((b-r)/d + 2)/6; break;
+      case b: h = ((r-g)/d + 4)/6; break;
+    }
+  }
+  const s = max === 0 ? 0 : d/max;
+  const v = max;
+  h = Math.round(h*360);
+  const ss = Math.round(s*100);
+  const vv = Math.round(v*100);
+  return `hsv(${h}°, ${ss}%, ${vv}%)`;
+}
+
 // init once DOM is ready
 window.addEventListener('DOMContentLoaded', init);
 
@@ -357,4 +512,4 @@ window.addEventListener('DOMContentLoaded', init);
 document.querySelector('.drop-hint').addEventListener('click', ()=>fileInput.click());
 
 // expose helpers for testing
-export {rgbToHex, rgbToHslString, rgbToCmykString};
+export {rgbToHex, rgbToHslString, rgbToCmykString, rgbToHsvString};

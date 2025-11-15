@@ -1,0 +1,17 @@
+# Pickly - Color Picker from Images
+# https://afraim.github.io/pickly/
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+
+# Slow down aggressive crawlers
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+# Point to sitemap
+Sitemap: https://afraim.github.io/pickly/sitemap.xml

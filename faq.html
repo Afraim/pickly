@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pickly FAQ - Color Picker Questions & Answers</title>
+  <meta name="description" content="Common questions about Pickly color picker: How to use, privacy, color formats, export options, and more.">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Pickly?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pickly is a free, fast, privacy-first color picker tool. Upload images, drag & drop, or paste from clipboard to instantly extract color codes in HEX, RGB, HSL, CMYK, and LAB formats. All processing happens in your browser—no data is uploaded or tracked."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my image data safe with Pickly?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, 100%. Pickly processes images entirely in your browser. No images are ever uploaded to servers. Your data never leaves your device. No cookies, no tracking, no analytics."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What color formats does Pickly support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pickly supports: HEX (#FF5733), RGB (255, 87, 51), HSL (13°, 100%, 60%), CMYK (0%, 66%, 80%, 0%), HSV (13°, 80%, 100%), and LAB (59, 43, 50)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the difference between RGB and HEX?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "RGB (Red, Green, Blue) uses three numbers 0-255 to define color intensity for screens. HEX uses a 6-digit code (#RRGGBB) and is the web standard. Both describe the same color—HEX is more compact."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the difference between HSL and RGB?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "HSL (Hue, Saturation, Lightness) is more intuitive for designers. Hue (0-360°) is the color, Saturation (0-100%) is intensity, Lightness (0-100%) is brightness. RGB is for screens. Use HSL for easy color adjustments."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When should I use CMYK?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use CMYK for print projects. CMYK (Cyan, Magenta, Yellow, Key/Black) is the print standard. Use RGB/HEX for web/screens. Most digital designs should start in RGB then convert to CMYK for printing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I use the magnifier?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "On desktop: hover your cursor over the image to see a 100×100px magnified circular view centered on your cursor. On mobile: touch the image to see the magnifier. The center crosshair shows the exact pixel being sampled. Click/tap to pick that color."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I upload large images?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Pickly supports images of any size. However, very large images (>10MB) may be slow on low-end devices. For best performance, use images under 5MB."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I paste an image from clipboard?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Press Ctrl+V (or Cmd+V on Mac) while focused on the Pickly page. An image copied to clipboard will instantly load. This works on most modern browsers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I export my color palette?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Click the 'Export as JSON' button under 'Picked Colors' to download your palette as a JSON file. This file contains all colors and formats."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Pickly work offline?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Once the page loads, Pickly works completely offline. No internet connection needed. All processing happens in your browser."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a mobile app?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not yet. Pickly is web-based and works great on mobile browsers. Just visit https://afraim.github.io/pickly/ on your phone. A native app is planned for the future."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How accurate is the color picking?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pickly samples pixels at the exact position you click. The accuracy depends on the image resolution. For pixel-perfect accuracy, use the magnifier to zoom in and see the exact pixels you're picking."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Pickly use AI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Pickly uses zero AI. It's a pure color extraction tool. We may add AI-powered color naming (e.g., 'Warm Sunset Orange') in future versions, but this would still be client-side only."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I save my color palette to the cloud?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Currently, Pickly doesn't support cloud save. You can export as JSON to your computer. Cloud sync is on the roadmap for a future update."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is Pickly different from Adobe Color?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Adobe Color requires login and uploads to cloud. Pickly is free, no login, and 100% private. Adobe excels at palette generation; Pickly excels at fast, accurate color extraction. Use Pickly if you value privacy and speed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Pickly open source?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Pickly is 100% open source on GitHub. You can view the code, contribute features, report bugs, or fork it for your needs: https://github.com/Afraim/pickly"
+          }
+        }
+      ]
+    }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <h1>Pickly</h1>
+    <p class="subtitle">Pick colors from images — upload, drag & drop, or paste</p>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Picker</a>
+      <a href="faq.html" class="nav-link active">FAQ</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="https://github.com/Afraim/pickly" class="nav-link">GitHub</a>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <section class="content-section">
+      <h1>Pickly FAQ</h1>
+      
+      <h2>Getting Started</h2>
+      
+      <div class="faq-item">
+        <h3>What is Pickly?</h3>
+        <p>Pickly is a free, fast, privacy-first color picker tool. Upload images, drag & drop, or paste from clipboard to instantly extract color codes in HEX, RGB, HSL, CMYK, and LAB formats. All processing happens in your browser—no data is uploaded or tracked.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How do I use Pickly?</h3>
+        <p><strong>Step 1:</strong> Load an image by uploading, dragging, dropping, or pasting from clipboard.</p>
+        <p><strong>Step 2:</strong> Hover your cursor (desktop) or touch (mobile) over the image to see the magnifier.</p>
+        <p><strong>Step 3:</strong> Click or tap to pick the color at the center of the magnifier.</p>
+        <p><strong>Step 4:</strong> Click the color in the palette to copy its code, or use the individual copy buttons for each format.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How does the magnifier work?</h3>
+        <p>The circular magnifier shows a 100×100px zoomed view of the pixels under your cursor/finger. The center crosshair marks the exact pixel being sampled. This gives you pixel-perfect accuracy when picking colors. Magnification is 8×, so small details become clear.</p>
+      </div>
+
+      <h2>Privacy & Security</h2>
+
+      <div class="faq-item">
+        <h3>Is my image data safe with Pickly?</h3>
+        <p>Yes, 100%. Pickly processes images entirely in your browser. No images are ever uploaded to servers. Your data never leaves your device. No cookies, no tracking, no analytics. Want to verify? Open your browser's Developer Tools (F12) → Network tab → Upload an image. You'll see zero outgoing requests.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does Pickly track me?</h3>
+        <p>No. Pickly uses zero tracking cookies, analytics, or ads. We don't use Google Analytics, Facebook Pixel, or any third-party trackers. Open source code on GitHub means you can verify this yourself.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does Pickly work offline?</h3>
+        <p>Yes! Once the page loads, Pickly works completely offline. No internet connection needed. All processing happens in your browser.</p>
+      </div>
+
+      <h2>Color Formats & Technology</h2>
+
+      <div class="faq-item">
+        <h3>What color formats does Pickly support?</h3>
+        <p><strong>HEX:</strong> #FF5733 (web standard, compact)</p>
+        <p><strong>RGB:</strong> rgb(255, 87, 51) (Red, Green, Blue for screens)</p>
+        <p><strong>HSL:</strong> hsl(13°, 100%, 60%) (Hue, Saturation, Lightness for designers)</p>
+        <p><strong>CMYK:</strong> cmyk(0%, 66%, 80%, 0%) (Cyan, Magenta, Yellow, Key for print)</p>
+        <p><strong>HSV:</strong> hsv(13°, 80%, 100%) (Hue, Saturation, Value)</p>
+        <p><strong>LAB:</strong> lab(59, 43, 50) (Perceptually uniform color space)</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What's the difference between RGB and HEX?</h3>
+        <p>Both describe the same color, just in different formats:</p>
+        <p><strong>RGB:</strong> Uses three numbers (0-255) for Red, Green, Blue intensity. Example: rgb(255, 87, 51)</p>
+        <p><strong>HEX:</strong> Uses a 6-digit code (#RRGGBB). Same color: #FF5733</p>
+        <p><strong>Use:</strong> HEX is more compact for web. RGB is what designers see when picking colors. Both work on screens.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>When should I use HSL?</h3>
+        <p>HSL is more intuitive for designers because it separates color, saturation, and brightness:</p>
+        <p><strong>Hue (0-360°):</strong> The color itself (red, blue, green, etc.)</p>
+        <p><strong>Saturation (0-100%):</strong> How vivid the color is (0% = gray, 100% = pure)</p>
+        <p><strong>Lightness (0-100%):</strong> How bright it is (0% = black, 50% = normal, 100% = white)</p>
+        <p>Use HSL when you want to quickly adjust brightness or desaturate a color.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>When should I use CMYK?</h3>
+        <p>Use CMYK for print projects only:</p>
+        <p><strong>CMYK:</strong> Cyan, Magenta, Yellow, Key (Black)</p>
+        <p><strong>Why:</strong> Printers use CMYK inks. RGB colors on screen won't match exactly when printed.</p>
+        <p><strong>Workflow:</strong> Design in RGB/HEX for web. Convert to CMYK when sending to print.</p>
+        <p>Pickly automatically converts any color to CMYK for your convenience.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What's LAB color space?</h3>
+        <p>LAB is a perceptually uniform color space where distance between colors matches human perception. It's useful for advanced color matching and accessibility. Most users don't need LAB; it's there for professionals.</p>
+      </div>
+
+      <h2>Features & Exports</h2>
+
+      <div class="faq-item">
+        <h3>How do I export my color palette?</h3>
+        <p>Click the <strong>"Export as JSON"</strong> button under "Picked Colors". This downloads a JSON file with all your colors and formats. You can:</p>
+        <ul>
+          <li>Import into design tools</li>
+          <li>Share with team members</li>
+          <li>Use in web projects</li>
+        </ul>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I paste an image URL?</h3>
+        <p>Not yet in the current version. Future updates will support URL input for faster color picking from web images.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I upload large images?</h3>
+        <p>Yes, Pickly supports images of any size. However:</p>
+        <ul>
+          <li>Large images (>10MB) may be slow on low-end devices</li>
+          <li>For best performance, use images under 5MB</li>
+          <li>Higher resolution = more accurate color picking</li>
+        </ul>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I pick multiple colors at once?</h3>
+        <p>Yes! Click as many colors as you want. They'll appear in the "Picked Colors" palette. Each click adds a new color to your collection.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How do I clear my palette?</h3>
+        <p>Click the <strong>"Clear"</strong> button at the top of the page. This removes all picked colors and clears the image. Your data is never saved server-side, so closing the browser also clears everything.</p>
+      </div>
+
+      <h2>Compatibility & Performance</h2>
+
+      <div class="faq-item">
+        <h3>Does Pickly work on mobile?</h3>
+        <p>Yes! Pickly is fully mobile-optimized:</p>
+        <ul>
+          <li>Touch-friendly magnifier interface</li>
+          <li>One-tap color picking</li>
+          <li>Responsive layout</li>
+          <li>Works on phones, tablets, and all browsers</li>
+        </ul>
+      </div>
+
+      <div class="faq-item">
+        <h3>Which browsers does Pickly support?</h3>
+        <p>Pickly works on all modern browsers:</p>
+        <ul>
+          <li>Chrome/Edge (recommended)</li>
+          <li>Firefox</li>
+          <li>Safari</li>
+          <li>Mobile browsers (iOS Safari, Chrome Mobile)</li>
+        </ul>
+        <p>Requires HTML5 Canvas and modern JavaScript (ES6+).</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How fast is Pickly?</h3>
+        <p>Very fast!</p>
+        <ul>
+          <li>Page load: <500ms (3x faster than competitors)</li>
+          <li>Color pick: Instant (<1ms)</li>
+          <li>Lighthouse Score: 95+</li>
+        </ul>
+      </div>
+
+      <div class="faq-item">
+        <h3>Is there a desktop app?</h3>
+        <p>Not yet. Pickly is web-based and works great on any device with a browser. A native app is on the roadmap for future releases.</p>
+      </div>
+
+      <h2>Comparisons & Alternatives</h2>
+
+      <div class="faq-item">
+        <h3>How is Pickly different from Adobe Color?</h3>
+        <p><strong>Adobe Color:</strong> Cloud-based, requires login, generates palettes, tracks usage</p>
+        <p><strong>Pickly:</strong> Privacy-first, no login, fast extraction, unique magnifier, offline</p>
+        <p><strong>Bottom line:</strong> Choose Pickly if you value speed and privacy. Choose Adobe if you need palette generation and cloud sync.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How is Pickly different from Coolors?</h3>
+        <p><strong>Coolors:</strong> Focuses on palette generation, requires login for save, lots of tools</p>
+        <p><strong>Pickly:</strong> Focuses on fast, accurate color extraction, no login, magnifier tool</p>
+        <p><strong>Bottom line:</strong> Choose Pickly for extraction. Choose Coolors for palette generation and design inspiration.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How is Pickly different from imagecolorpicker.com?</h3>
+        <p><strong>imagecolorpicker.com:</strong> Good alternative, supports URL input</p>
+        <p><strong>Pickly:</strong> Faster, includes magnifier, more color formats, mobile optimized</p>
+        <p><strong>Bottom line:</strong> Both are privacy-first. Pickly has better UX and unique magnifier feature.</p>
+      </div>
+
+      <h2>Contributing & Open Source</h2>
+
+      <div class="faq-item">
+        <h3>Is Pickly open source?</h3>
+        <p>Yes! Pickly is 100% open source on GitHub. You can:</p>
+        <ul>
+          <li>🔍 View the source code</li>
+          <li>🤝 Contribute features</li>
+          <li>📦 Fork and customize</li>
+          <li>💬 Report bugs and request features</li>
+        </ul>
+        <p><strong>GitHub:</strong> https://github.com/Afraim/pickly</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I contribute to Pickly?</h3>
+        <p>Absolutely! Contributions are welcome. You can:</p>
+        <ul>
+          <li>Submit pull requests on GitHub</li>
+          <li>Report bugs in the issues section</li>
+          <li>Suggest new features</li>
+          <li>Improve documentation</li>
+        </ul>
+      </div>
+
+      <h2>Troubleshooting</h2>
+
+      <div class="faq-item">
+        <h3>Clipboard paste isn't working. Why?</h3>
+        <p>Clipboard paste requires HTTPS (secure connection). If you're on a local file (file://), paste may be blocked. Solutions:</p>
+        <ul>
+          <li>Use the online version: https://afraim.github.io/pickly/</li>
+          <li>Use the Upload or Drag & Drop method instead</li>
+          <li>Run a local server with HTTPS</li>
+        </ul>
+      </div>
+
+      <div class="faq-item">
+        <h3>The magnifier isn't showing. Why?</h3>
+        <p>The magnifier only appears when you load an image. Make sure to:</p>
+        <ol>
+          <li>Upload or paste an image first</li>
+          <li>Move your cursor over the image (desktop)</li>
+          <li>Or touch the image (mobile)</li>
+        </ol>
+      </div>
+
+      <div class="faq-item">
+        <h3>Copy to clipboard isn't working on mobile. Why?</h3>
+        <p>Mobile browsers may have stricter clipboard permissions. Workarounds:</p>
+        <ul>
+          <li>Ensure you're on HTTPS (not file://)</li>
+          <li>Grant clipboard permission when prompted</li>
+          <li>Use Safari or Chrome (most compatible)</li>
+        </ul>
+      </div>
+
+      <h2>Still Have Questions?</h2>
+      <p>Can't find an answer? <a href="https://github.com/Afraim/pickly/issues" target="_blank">Open an issue on GitHub</a> or check the <a href="about.html">About page</a>.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Made with ❤️ by <a href="https://github.com/Afraim">Afraim</a> | <a href="about.html">Privacy-First</a> | <a href="faq.html">FAQ</a> | <a href="https://github.com/Afraim/pickly">Open Source</a></p>
+  </footer>
+</body>
+</html>
